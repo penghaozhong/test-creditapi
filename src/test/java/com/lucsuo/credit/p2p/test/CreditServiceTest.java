@@ -11,15 +11,11 @@ import com.lucsuo.credit.p2p.test.util.AESUtil;
 import junit.framework.TestCase;
 
 public class CreditServiceTest extends TestCase {
-	
-	// 修改为自己的key
-	public static final String KEY = "=";
 
 	public void testGetCenterScore() {
 		// 装入数据
 		CenterScore socore = new CenterScore();
 		socore.setTimeStamp(System.currentTimeMillis());
-		socore.setPrivacyNumber("1448874409041");
 		// 测试模型4
 		socore.setCustomerName("张晓敏");
 		socore.setSex("男");
@@ -31,12 +27,14 @@ public class CreditServiceTest extends TestCase {
 		String json = JSONObject.toJSONString(socore);
 		System.out.println(json);
 		// AES加密
-		byte[] aes = AESUtil.encrypt(json, KEY);
-		// Base64
-		String paramData = Base64.encodeBase64URLSafeString(aes);
-		System.out.println(paramData);
+		byte[] aes1 = AESUtil.encrypt(json, CreditServiceImpl.KEY);
+		System.out.println(new String(aes1));
+		String  data =  Base64.encodeBase64URLSafeString(aes1);
+		
+		System.out.println(new String (AESUtil.decrypt(data, CreditServiceImpl.KEY)));
 		CreditService service = new CreditServiceImpl();
-		System.out.println(service.getCenterScore(paramData));
+		System.out.println(service.getCenterScore(data));
+		
 	}
 
 }
