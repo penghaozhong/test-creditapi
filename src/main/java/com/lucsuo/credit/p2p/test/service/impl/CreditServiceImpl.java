@@ -28,7 +28,7 @@ public class CreditServiceImpl implements CreditService {
 	// 修改为自己公司的ID
 	public static final String ID = "";
 	// 修改为自己公司的key
-	public static final String KEY = "==";
+	public static final String KEY = "";
 	// 请求地址URL
 	public static final String URL = "http://localhost:8080/company/CenterScoreService/get_score";
 
