@@ -28,7 +28,7 @@ public class CreditServiceImpl implements CreditService {
 	// 修改为自己公司的ID
 	public static final String ID = "";
 	// 修改为自己公司的key
-	public static final String KEY = "";
+	public static final String KEY = "==";
 	// 请求地址URL
 	public static final String URL = "http://localhost:8080/company/CenterScoreService/get_score";
 
@@ -45,7 +45,7 @@ public class CreditServiceImpl implements CreditService {
 			String paramString = "timeStamp="+System.currentTimeMillis()+"&timeDiff=0";
 			nvps.add(new BasicNameValuePair("param", Base64.encodeBase64URLSafeString(AESUtil.encrypt(paramString, KEY))));
 			// sha1(参数串)
-			nvps.add(new BasicNameValuePair("signature", DigestUtils.sha1Hex(paramString)));
+			nvps.add(new BasicNameValuePair("signature", DigestUtils.sha1Hex(Base64.encodeBase64URLSafeString(AESUtil.encrypt(paramString, KEY)))));
 			nvps.add(new BasicNameValuePair("data", paramData));
 			request.setEntity(new UrlEncodedFormEntity(nvps));
 			// 发起请求
