@@ -22,7 +22,7 @@ public class CreditServiceTest extends TestCase {
 		socore.setHouse("有房有贷款");
 		socore.setOrgType("民营企业");
 		socore.setCityCategory("北京");
-		socore.setWorkTime("2014-01-01");
+		socore.setWorkTime("2012-01-01");
 		
 		String json = JSONObject.toJSONString(socore);
 		System.out.println(json);
