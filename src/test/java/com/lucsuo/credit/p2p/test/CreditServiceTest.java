@@ -17,7 +17,7 @@ public class CreditServiceTest extends TestCase {
 		CenterScore socore = new CenterScore();
 		socore.setTimeStamp(System.currentTimeMillis());
 		// 测试模型4
-		socore.setCustomerName("张三");
+		socore.setCustomerName("李四");
 		socore.setSex("男");
 		socore.setHouse("有房有贷款");
 		socore.setOrgType("民营企业");
