@@ -16,24 +16,31 @@ public class CreditServiceTest extends TestCase {
 		// 装入数据
 		CenterScore socore = new CenterScore();
 		socore.setTimeStamp(System.currentTimeMillis());
-		// 测试模型4
+		
 		socore.setCustomerName("李四");
 		socore.setSex("男");
 		socore.setHouse("有房有贷款");
 		socore.setOrgType("民营企业");
 		socore.setCityCategory("北京");
 		socore.setWorkTime("2014-01-01");
+		// 校验
+		socore.setIdNumber("310102196911215239");
+		socore.setAge(12);
 		
 		String json = JSONObject.toJSONString(socore);
-		System.out.println(json);
 		// AES加密
 		byte[] aes1 = AESUtil.encrypt(json, CreditServiceImpl.KEY);
-		System.out.println(new String(aes1));
 		String  data =  Base64.encodeBase64URLSafeString(aes1);
 		
 		System.out.println(new String (AESUtil.decrypt(data, CreditServiceImpl.KEY)));
 		CreditService service = new CreditServiceImpl();
 		System.out.println(service.getCenterScore(data));
+		
+	}
+	
+	public void testGet_timeDiff() {
+		CreditService service = new CreditServiceImpl();
+		System.out.println(service.get_timeDiff(CreditServiceImpl.ID));
 		
 	}
 

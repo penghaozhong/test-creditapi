@@ -30,8 +30,12 @@ public class CreditServiceImpl implements CreditService {
 	// 修改为自己公司的key
 	public static final String KEY = "";
 	// 请求地址URL
-	public static final String URL = "http://localhost:8080/company/CenterScoreService/get_score";
+	public static final String URL = "http://service.lcsuo.com/company/CenterScoreService/get_score";
 
+	public static final String URLTIME = "http://service.lcsuo.com/company/get_timeDiff";
+
+	
+	
 	public int getCenterScore(String paramData) {
 		RequestConfig config = RequestConfig.custom().setConnectionRequestTimeout(30 * 1000)
 				.setConnectTimeout(30 * 1000).setSocketTimeout(30 * 1000).build();
@@ -42,11 +46,51 @@ public class CreditServiceImpl implements CreditService {
 			List<NameValuePair> nvps = new ArrayList<NameValuePair>();
 			nvps.add(new BasicNameValuePair("id", ID));
 			// Base64 ( AES ( timeStamp=System.currentTimeMillis()&timeDiff=0 )
-			String paramString = "timeStamp="+System.currentTimeMillis()+"&timeDiff=0";
-			nvps.add(new BasicNameValuePair("param", Base64.encodeBase64URLSafeString(AESUtil.encrypt(paramString, KEY))));
+			String paramString = "timeStamp="+System.currentTimeMillis()+"&timeDiff=60&id="+ID;
+			nvps.add(new BasicNameValuePair("param", Base64.encodeBase64URLSafeString(AESUtil.encrypt("timeStamp="+System.currentTimeMillis()+"&timeDiff=60", KEY))));
 			// sha1(参数串)
 			nvps.add(new BasicNameValuePair("signature", DigestUtils.sha1Hex(Base64.encodeBase64URLSafeString(AESUtil.encrypt(paramString, KEY)))));
 			nvps.add(new BasicNameValuePair("data", paramData));
+			request.setEntity(new UrlEncodedFormEntity(nvps));
+			// 发起请求
+			response = client.execute(request);
+			int resultCode = response.getStatusLine().getStatusCode();
+			HttpEntity entity = response.getEntity();
+			String resultJson = EntityUtils.toString(entity, "UTF-8");
+			// 返回码200，请求成功；其他情况都为请求出现错误
+			if (HttpStatus.SC_OK == resultCode) {
+				System.out.println(resultJson);
+			}
+		} catch (ClientProtocolException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (null != request && !request.isAborted()) {
+				request.abort();
+			}
+			HttpClientUtils.closeQuietly(client);
+			HttpClientUtils.closeQuietly(response);
+		}
+		return 0;
+	}
+
+	public long get_timeDiff(String id) {
+		RequestConfig config = RequestConfig.custom().setConnectionRequestTimeout(30 * 1000)
+				.setConnectTimeout(30 * 1000).setSocketTimeout(30 * 1000).build();
+		CloseableHttpClient client = HttpClientBuilder.create().setDefaultRequestConfig(config).build();
+		HttpPost request = new HttpPost(URLTIME);
+		CloseableHttpResponse response = null;
+		try {
+			List<NameValuePair> nvps = new ArrayList<NameValuePair>();
+			nvps.add(new BasicNameValuePair("id", ID));
+			// Base64 ( AES ( timeStamp=System.currentTimeMillis()&timeDiff=0 )
+			String paramString = "timeStamp="+System.currentTimeMillis()+"&id="+ID;
+			nvps.add(new BasicNameValuePair("param", Base64.encodeBase64URLSafeString(AESUtil.encrypt("timeStamp="+System.currentTimeMillis(), KEY))));
+			// sha1(参数串)
+			nvps.add(new BasicNameValuePair("signature", DigestUtils.sha1Hex(Base64.encodeBase64URLSafeString(AESUtil.encrypt(paramString, KEY)))));
 			request.setEntity(new UrlEncodedFormEntity(nvps));
 			// 发起请求
 			response = client.execute(request);
