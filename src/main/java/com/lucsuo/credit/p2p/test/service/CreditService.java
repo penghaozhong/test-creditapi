@@ -1,9 +1,28 @@
 package com.lucsuo.credit.p2p.test.service;
 
+
+/**
+ * @author Administrator
+ *
+ */
+/**
+ * @author Administrator
+ *
+ */
 public interface CreditService {
 
 	
-	 public int getCenterScore(String paramData);
+	/**
+	 * @param paramData
+	 * @param timeDiff
+	 * @return
+	 */
+	public float get_score(String paramData,int timeDiff);
+
 	
-	public long get_timeDiff(String id);
+	/**
+	 * @param id  id可以在公司注册邮件里面找到
+	 * @return
+	 */
+	public int get_timeDiff(String id);
 }
