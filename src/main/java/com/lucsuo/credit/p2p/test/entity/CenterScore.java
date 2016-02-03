@@ -12,38 +12,71 @@ public class CenterScore {
 
 	private long timeStamp;
 	private String privacyNumber;
+	// 客户姓名
 	private String customerName;
+	// 性别
 	private String sex;
+	// 学历
 	private String degree;
+	// 婚姻状况
 	private String maritalState;
+	// 年龄
 	private int age;
+	// 在现单位工作时间 年月日
 	private String workTime;
+	// 房产状况 有房有贷款，有房无贷款，无房
 	private String house;
+	// 所在省份
 	private String area;
+	// 所在城市
 	private String cityCategory;
+	// 单位性质 国有企业，机关事业，民营企业，三资企业，其他
 	private String orgType;
+	// 申请递交时间（信审时间）
 	private String submitTime;
+	// 近3个月央行征信报告查询次数
 	private int s3mquery;
+	// 近1年央行征信报告查询次数
 	private int s1yquery;
+	// 近2年央行征信报告查询次数
 	private int s2yquery;
+	// 第一笔贷款发放时间
 	private String FirstLoanOpenMonth;
+	// 最近一笔贷款发放时间
 	private String RecentLoanOpenDate;
+	// 历史总贷款笔数
 	private int HistoryLoanCount;
+	// 现有未结清贷款笔数
 	private int UnpaidLoanCount;
+	// 现有未结清贷款的总合同金额
 	private double UnpaidLoanCreditLimit;
+	// 现有未结清贷款的总贷款余额
 	private double UnpaidLoanBlance;
+	// 首张信用卡开卡时间
 	private String FirstCreditCardOpenTime;
+	// 最近一张信用卡开卡时间
 	private String RecentCreditCardOpenTime;
+	// 近6个月贷记审批查询次数
 	private int QueryTimesIn6MonthForCreditCard;
+	// 近1年信用卡审批查询次数
 	private int QueryTimesIn1YearForCreditCard;
+	// 近2年信用卡审批查询次数
 	private int QueryTimesIn2YearForCreditCard;
+	// 近6个月信用卡开卡张数
 	private int CreditCardCountOpenIn6Month;
+	// 近1年信用卡开卡张数
 	private int CreditCardCountOpenIn1Year;
+	// 近2年信用卡开卡张数
 	private int CreditCardCountOpenIn2Year;
+	// 信用卡人民币账户的授信总额度
 	private double CreditCardTotalLimit;
+	// 信用卡人民币账户的已用总额度
 	private double CreditCardUsedLimit;
+	// 信用卡人民币账户中最高的单家银行授信额度
 	private double MaxCreditLimit;
+	// 信用卡中所有的记录条数(现有的信用卡张数)
 	private int CreditCardRecordCount;
+	// 信用卡中人民币卡的记录条数(现有的人民币帐户信用卡张数)
 	private int CreditCardCNYCount;
 
 	public int getAge() {

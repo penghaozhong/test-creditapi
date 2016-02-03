@@ -7,7 +7,7 @@ public interface CreditService {
 	 * @param paramData
 	 * @return
 	 */
-	 public int getCenterScore(String paramData);
+	 public String getCenterScore(String paramData);
 	 /**
 	  * 调用时间同步接口
 	  * @return
