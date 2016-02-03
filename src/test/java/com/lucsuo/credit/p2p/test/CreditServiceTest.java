@@ -26,12 +26,36 @@ public class CreditServiceTest extends TestCase {
 		CenterScore socore = new CenterScore();
 		socore.setTimeStamp(System.currentTimeMillis());
 		// 测试模型4
-		socore.setCustomerName("李四");
+		socore.setCustomerName("高文雷");
+		socore.setIdNumber("210181199310212759");
 		socore.setSex("男");
-		socore.setHouse("有房有贷款");
+		socore.setDegree("中专");
+		socore.setAge(22);
+		socore.setWorkTime("2014-12-13");
+		socore.setHouse("无房");
+		socore.setArea("广东");
+		socore.setCityCategory("广州");
 		socore.setOrgType("民营企业");
-		socore.setCityCategory("北京");
-		socore.setWorkTime("2014-01-01");
+		socore.setSubmitTime("2015-09-01");
+		socore.setS3mquery(1);
+		socore.setS2yquery(14);
+		socore.setFirstLoanOpenMonth("2014-10-30");
+		socore.setHistoryLoanCount(1);
+		socore.setUnpaidLoanCount(0);
+		socore.setUnpaidLoanCreditLimit(0);
+		socore.setUnpaidLoanBlance(0);
+		socore.setFirstCreditCardOpenTime("2013-03-28");
+		socore.setQueryTimesIn6MonthForCreditCard(5);
+		socore.setQueryTimesIn2YearForCreditCard(6);
+		socore.setCreditCardCountOpenIn6Month(1);
+		socore.setCreditCardCountOpenIn2Year(0);
+		socore.setCreditCardTotalLimit(83500);
+		socore.setCreditCardUsedLimit(0);
+		socore.setMaxCreditLimit(77500);
+		socore.setCreditCardRecordCount(2);
+		socore.setCreditCardCNYCount(2);
+		
+		
 		
 		String json = JSONObject.toJSONString(socore);
 		System.out.println(json);
@@ -58,7 +82,7 @@ public class CreditServiceTest extends TestCase {
 		QueryCommunicationInfo queryCommunicationInfo = new QueryCommunicationInfo();
 		queryCommunicationInfo.setName("张三");
 		queryCommunicationInfo.setTelephone("13310006092");
-		queryCommunicationInfo.setIdNumber("513701199110252216");
+		queryCommunicationInfo.setIdNumber("522725198003025752");
 		List<QueryCommunicationInfo> list = new ArrayList<QueryCommunicationInfo>();
 		list.add(queryCommunicationInfo);
 		communicationScore.setSubmitTime("2015-01-01");
@@ -77,8 +101,4 @@ public class CreditServiceTest extends TestCase {
 		System.out.println("====>"+comScore2);
 	}
 	
-	
-	public static void main(String[] args) {
-		testComScore();
-	}
 }
