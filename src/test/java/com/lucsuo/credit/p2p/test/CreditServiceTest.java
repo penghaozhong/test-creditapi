@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.codec.binary.Base64;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.alibaba.fastjson.JSONObject;
 import com.lucsuo.credit.p2p.test.entity.AsyncQueryCommunicationVo;
@@ -14,20 +16,31 @@ import com.lucsuo.credit.p2p.test.service.CreditService;
 import com.lucsuo.credit.p2p.test.service.impl.CreditServiceImpl;
 import com.lucsuo.credit.p2p.test.util.AESUtil;
 
+
 import junit.framework.TestCase;
 
 public class CreditServiceTest extends TestCase {
 
+<<<<<<< HEAD
 	/**
 	 * 央信评分接口对接示例
 	 */
 	public static void testGetCenterScore() {
+=======
+	 private static final Logger LOG = LoggerFactory.getLogger(CreditServiceTest.class);
+	
+	public void testGetCenterScore() {
+>>>>>>> branch 'master' of https://github.com/penghaozhong/test-creditapi.git
 		// 装入数据
 		CenterScore socore = new CenterScore();
 		socore.setTimeStamp(System.currentTimeMillis());
+<<<<<<< HEAD
 		// 测试模型4
 		socore.setCustomerName("高文雷");
 		socore.setIdNumber("210181199310212759");
+=======
+		socore.setCustomerName("李四");
+>>>>>>> branch 'master' of https://github.com/penghaozhong/test-creditapi.git
 		socore.setSex("男");
 		socore.setDegree("中专");
 		socore.setAge(22);
@@ -36,6 +49,7 @@ public class CreditServiceTest extends TestCase {
 		socore.setArea("广东");
 		socore.setCityCategory("广州");
 		socore.setOrgType("民营企业");
+<<<<<<< HEAD
 		socore.setSubmitTime("2015-09-01");
 		socore.setS3mquery(1);
 		socore.setS2yquery(14);
@@ -57,16 +71,25 @@ public class CreditServiceTest extends TestCase {
 		
 		
 		
+=======
+		socore.setCityCategory("北京");
+		socore.setWorkTime("2014-01-01");
+		// 校验
+		socore.setIdNumber("310102196911215239");
+		socore.setAge(12);
+>>>>>>> branch 'master' of https://github.com/penghaozhong/test-creditapi.git
 		String json = JSONObject.toJSONString(socore);
-		System.out.println(json);
 		// AES加密
 		byte[] aes1 = AESUtil.encrypt(json, CreditServiceImpl.KEY);
-		System.out.println(new String(aes1));
 		String  data =  Base64.encodeBase64URLSafeString(aes1);
-		
-		System.out.println(new String (AESUtil.decrypt(data, CreditServiceImpl.KEY)));
 		CreditService service = new CreditServiceImpl();
-		System.out.println(service.getCenterScore(data));
+		LOG.debug(service.getCenterScore(data)+"");
+		
+	}
+	
+	public void testGet_timeDiff() {
+		CreditService service = new CreditServiceImpl();
+		LOG.debug(service.get_timeDiff(CreditServiceImpl.ID)+"");
 		
 	}
 	
