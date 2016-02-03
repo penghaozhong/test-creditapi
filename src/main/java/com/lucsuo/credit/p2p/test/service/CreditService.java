@@ -7,7 +7,6 @@ package com.lucsuo.credit.p2p.test.service;
  */
 
 public interface CreditService {
-
 	
 	/**
 	 * @param paramData
@@ -22,4 +21,5 @@ public interface CreditService {
 	 * @return
 	 */
 	public int get_timeDiff(String id);
+
 }
