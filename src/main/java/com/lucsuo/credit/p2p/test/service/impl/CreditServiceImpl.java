@@ -26,7 +26,11 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.lucsuo.credit.p2p.test.service.CreditService;
 import com.lucsuo.credit.p2p.test.util.AESUtil;
-
+/**
+ * 
+ * @author lcsuo
+ *
+ */
 public class CreditServiceImpl implements CreditService {
 
 	// 修改为自己公司的ID

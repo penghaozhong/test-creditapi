@@ -11,7 +11,11 @@ import com.lucsuo.credit.p2p.test.entity.CenterScore;
 import com.lucsuo.credit.p2p.test.service.CreditService;
 import com.lucsuo.credit.p2p.test.service.impl.CreditServiceImpl;
 import com.lucsuo.credit.p2p.test.util.AESUtil;
-
+/**
+ * 
+ * @author lcsuo
+ *
+ */
 public class CreditServiceTest extends TestCase {	
 	private static final Logger LOG = LoggerFactory.getLogger(CreditServiceTest.class);
 

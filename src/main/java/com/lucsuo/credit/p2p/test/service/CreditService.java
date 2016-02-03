@@ -2,13 +2,10 @@ package com.lucsuo.credit.p2p.test.service;
 
 
 /**
- * @author Administrator
+ * @author lcsuo
  *
  */
-/**
- * @author Administrator
- *
- */
+
 public interface CreditService {
 
 	
