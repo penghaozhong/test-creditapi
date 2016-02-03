@@ -7,7 +7,7 @@ public interface CreditService {
 	 * @param paramData
 	 * @return
 	 */
-	 public String getCenterScore(String paramData);
+	 public int getCenterScore(String paramData);
 	 /**
 	  * 调用时间同步接口
 	  * @return
@@ -27,4 +27,12 @@ public interface CreditService {
 	  * @return
 	  */
 	 public String getComScore(String batchCode,int comScoreTime);
+	 
+	/**
+	 * 调用时间同步接口
+	 * @param id
+	 * @return
+	 */
+	public int get_timeDiff(String id);
+	
 }
