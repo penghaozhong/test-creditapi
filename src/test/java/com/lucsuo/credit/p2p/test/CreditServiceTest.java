@@ -29,7 +29,6 @@ public class CreditServiceTest extends TestCase {
 		// 测试模型4
 		socore.setCustomerName("高文雷");
 		socore.setIdNumber("210181199310212759");
-		socore.setCustomerName("李四");
 		socore.setSex("男");
 		socore.setDegree("中专");
 		socore.setAge(22);
@@ -58,9 +57,8 @@ public class CreditServiceTest extends TestCase {
 		socore.setCreditCardCNYCount(2);
 		socore.setCityCategory("北京");
 		socore.setWorkTime("2014-01-01");
-		// 校验
-		socore.setIdNumber("310102196911215239");
-		socore.setAge(12);
+		socore.setCityCategory("北京");
+		socore.setWorkTime("2014-01-01");
 		String json = JSONObject.toJSONString(socore);
 		// AES加密
 		byte[] aes1 = AESUtil.encrypt(json, CreditServiceImpl.KEY);
