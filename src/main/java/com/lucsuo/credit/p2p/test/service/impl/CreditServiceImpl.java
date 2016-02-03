@@ -19,22 +19,25 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import com.lucsuo.credit.p2p.test.CreditServiceTest;
 import com.lucsuo.credit.p2p.test.service.CreditService;
 import com.lucsuo.credit.p2p.test.util.AESUtil;
 
 public class CreditServiceImpl implements CreditService {
 
 	// 修改为自己公司的ID
-	public static final String ID = "";
+	public static final String ID = "1453963509180";
 	// 修改为自己公司的key
-	public static final String KEY = "";
+	public static final String KEY = "l9Vld79WTxQMp5nG4hwt6UvBdW4bOzVa";
 	// 请求地址URL
-	public static final String URL = "http://service.lcsuo.com/company/CenterScoreService/get_score";
+	public static final String URL = "http://localhost:8080/credit_manage/company/CenterScoreService/get_score";
 
-	public static final String URLTIME = "http://service.lcsuo.com/company/get_timeDiff";
+	public static final String URLTIME = "http://localhost:8080/credit_manage/company/get_timeDiff";
 
-	
+	private static final Logger LOG = LoggerFactory.getLogger(CreditServiceImpl.class);
 	
 	public int getCenterScore(String paramData) {
 		RequestConfig config = RequestConfig.custom().setConnectionRequestTimeout(30 * 1000)
@@ -59,7 +62,7 @@ public class CreditServiceImpl implements CreditService {
 			String resultJson = EntityUtils.toString(entity, "UTF-8");
 			// 返回码200，请求成功；其他情况都为请求出现错误
 			if (HttpStatus.SC_OK == resultCode) {
-				System.out.println(resultJson);
+				LOG.debug(resultJson);
 			}
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
