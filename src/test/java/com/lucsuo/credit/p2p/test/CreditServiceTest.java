@@ -7,10 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.alibaba.fastjson.JSONObject;
-import com.lucsuo.credit.p2p.test.entity.AsyncQueryCommunicationVo;
 import com.lucsuo.credit.p2p.test.entity.CenterScore;
-import com.lucsuo.credit.p2p.test.entity.CommunicationScore;
-import com.lucsuo.credit.p2p.test.entity.QueryCommunicationInfo;
 import com.lucsuo.credit.p2p.test.service.CreditService;
 import com.lucsuo.credit.p2p.test.service.impl.CreditServiceImpl;
 import com.lucsuo.credit.p2p.test.util.AESUtil;
