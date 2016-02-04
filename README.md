@@ -12,3 +12,8 @@
 * 下载后解压，可以看到local_policy.jar和US_export_policy.jar以及readme.txt。
 * 如果安装了JRE，将两个jar文件放到%JRE_HOME%\lib\security下覆盖原来文件，记得先备份。
 * 如果安装了JDK，将两个jar文件也放到%JDK_HOME%\jre\lib\security下。
+
+##git项目下载流程:
+
+> eclipse git 使用:  http://my.oschina.net/u/933822/blog/369640?fromerr=z2asb8xh
+> > 转换为mavrn项目: 项目 -> 右键 -> Configure-> Convert to Maven Project
