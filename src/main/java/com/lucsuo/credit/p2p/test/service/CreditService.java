@@ -2,13 +2,26 @@ package com.lucsuo.credit.p2p.test.service;
 
 
 /**
- * @author lcsuo
+ * @author Sorin
  *
  */
 
 public interface CreditService {
 	
 	/**
+	 * 通讯信用评分结果查询
+	 * @param paramData
+	 * @param timeDiff
+	 */
+	public String get_result(String batchCode,int timeDiff);
+	/**
+	 * 通讯信用评分查询
+	 * @param paramData
+	 * @param timeDiff
+	 */
+	public String get_query(String paramData,int timeDiff);
+	/**
+	 * 获取央信评分
 	 * @param paramData
 	 * @param timeDiff
 	 * @return

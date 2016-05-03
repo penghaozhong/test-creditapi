@@ -28,21 +28,116 @@ import com.lucsuo.credit.p2p.test.service.CreditService;
 import com.lucsuo.credit.p2p.test.util.AESUtil;
 /**
  * 
- * @author lcsuo
+ * @author Sorin
  *
  */
 public class CreditServiceImpl implements CreditService {
 
 	// 修改为自己公司的ID
 	public static final String ID = "";
-	// 修改为自己公司的key
+	// 修改为自己公司的PrivateKey
 	public static final String KEY = "";
 	// 央信评分接口对接请求地址URL
-	public static final String URL = "http://api.lcsuo.com/get_score";
+	public static final String URL = "http://api.lcsuo.com/company/get_score";
 	// 调用时间同步接口请求URL
-	public static final String URL_COM_TIME = "http://api.lcsuo.com/get_timeDiff";
-
+	public static final String URL_COM_TIME = "http://api.lcsuo.com/company/get_timeDiff";
+	// 通讯信用评分对接请求地址URL
+	public static final String URL_GET_QUERY = "http://api.lcsuo.com/company/CommunicationService/get_query";
+	// 通信评分结果查询接口URL
+	public static final String URL_GET_RESULT = "http://api.lcsuo.com/company/CommunicationService/get_result";
+	
 	private static final Logger LOG = LoggerFactory.getLogger(CreditServiceImpl.class);
+	
+	/**
+	 * 通讯信用评分结果查询
+	 */
+	public String get_result(String batchCode, int timeDiff) {
+		RequestConfig config = RequestConfig.custom().setConnectionRequestTimeout(30 * 1000)
+				.setConnectTimeout(30 * 1000).setSocketTimeout(30 * 1000).build();
+		CloseableHttpClient client = HttpClientBuilder.create().setDefaultRequestConfig(config).build();
+		HttpPost request = new HttpPost(URL_GET_RESULT);
+		CloseableHttpResponse response = null;
+		String resultJson = null;
+		try{
+			List<NameValuePair> nvps = new ArrayList<NameValuePair>();
+			nvps.add(new BasicNameValuePair("id", ID));
+			// Base64 ( AES ( timeStamp=System.currentTimeMillis()&timeDiff=0 )
+			String paramString = "timeStamp="+System.currentTimeMillis()+"&timeDiff="+timeDiff;
+			nvps.add(new BasicNameValuePair("param", Base64.encodeBase64URLSafeString(AESUtil.encrypt(paramString, KEY))));
+			// sha1(参数串)
+			StringBuilder sh1 = new StringBuilder(paramString).append("&id=").append(ID);
+			nvps.add(new BasicNameValuePair("signature", DigestUtils.sha1Hex(Base64.encodeBase64URLSafeString(AESUtil.encrypt(sh1.toString(), KEY)))));
+			nvps.add(new BasicNameValuePair("data",Base64.encodeBase64URLSafeString(AESUtil.encrypt(batchCode,KEY)).toString()));
+			request.setEntity(new UrlEncodedFormEntity(nvps));
+			// 发起请求
+			response = client.execute(request);
+			int resultCode = response.getStatusLine().getStatusCode();
+			HttpEntity entity = response.getEntity();
+			resultJson = EntityUtils.toString(entity, "UTF-8");
+			if (HttpStatus.SC_OK == resultCode) {
+				System.out.println(resultJson);
+			}
+		} catch (ClientProtocolException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (null != request && !request.isAborted()) {
+				request.abort();
+			}
+			HttpClientUtils.closeQuietly(client);
+			HttpClientUtils.closeQuietly(response);
+		}
+		return resultJson;
+	}
+	/**
+	 * 通讯信用评分查询
+	 */
+	public String get_query(String paramData, int timeDiff) {
+		RequestConfig config = RequestConfig.custom().setConnectionRequestTimeout(30 * 1000)
+				.setConnectTimeout(30 * 1000).setSocketTimeout(30 * 1000).build();
+		CloseableHttpClient client = HttpClientBuilder.create().setDefaultRequestConfig(config).build();
+		HttpPost request = new HttpPost(URL_GET_QUERY);
+		CloseableHttpResponse response = null;
+		String batchCode = null;
+		try{
+			List<NameValuePair> nvps = new ArrayList<NameValuePair>();
+			nvps.add(new BasicNameValuePair("id", ID));
+			// Base64 ( AES ( timeStamp=System.currentTimeMillis()&timeDiff=0 )
+			String paramString = "timeStamp="+System.currentTimeMillis()+"&timeDiff="+timeDiff;
+			nvps.add(new BasicNameValuePair("param", Base64.encodeBase64URLSafeString(AESUtil.encrypt(paramString, KEY))));
+			// sha1(参数串)
+			StringBuilder sh1 = new StringBuilder(paramString).append("&id=").append(ID);
+			nvps.add(new BasicNameValuePair("signature", DigestUtils.sha1Hex(Base64.encodeBase64URLSafeString(AESUtil.encrypt(sh1.toString(), KEY)))));
+			nvps.add(new BasicNameValuePair("data",Base64.encodeBase64URLSafeString(AESUtil.encrypt(paramData,KEY)).toString()));
+			request.setEntity(new UrlEncodedFormEntity(nvps));
+			// 发起请求
+			response = client.execute(request);
+			int resultCode = response.getStatusLine().getStatusCode();
+			HttpEntity entity = response.getEntity();
+			String resultJson = EntityUtils.toString(entity, "UTF-8");
+			if (HttpStatus.SC_OK == resultCode) {
+				System.out.println(resultJson);
+				JSONObject parseObject = JSON.parseObject(resultJson);
+				batchCode = (String) parseObject.get("batchCode");
+			}
+		} catch (ClientProtocolException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (null != request && !request.isAborted()) {
+				request.abort();
+			}
+			HttpClientUtils.closeQuietly(client);
+			HttpClientUtils.closeQuietly(response);
+		}
+		return batchCode;
+	}
 	
 	/**
 	 * 央信评分接口对接示例
@@ -136,5 +231,4 @@ public class CreditServiceImpl implements CreditService {
 		}
 		return timeDiff;
 	}
-
 }

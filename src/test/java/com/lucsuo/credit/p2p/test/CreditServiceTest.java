@@ -1,30 +1,74 @@
 package com.lucsuo.credit.p2p.test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import junit.framework.TestCase;
 
 import org.apache.commons.codec.binary.Base64;
+import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.alibaba.fastjson.JSONObject;
+import com.lucsuo.credit.p2p.test.entity.AsyncQueryCommunicationVo;
 import com.lucsuo.credit.p2p.test.entity.CenterScore;
+import com.lucsuo.credit.p2p.test.entity.CommunicationScore;
+import com.lucsuo.credit.p2p.test.entity.QueryCommunicationInfo;
 import com.lucsuo.credit.p2p.test.service.CreditService;
 import com.lucsuo.credit.p2p.test.service.impl.CreditServiceImpl;
 import com.lucsuo.credit.p2p.test.util.AESUtil;
 /**
  * 
- * @author lcsuo
+ * @author Sorin
  *
  */
 public class CreditServiceTest extends TestCase {	
+	
 	private static final Logger LOG = LoggerFactory.getLogger(CreditServiceTest.class);
-
+	
+	CreditService service = new CreditServiceImpl();
+	
+	/**
+	 * 通讯信用评分结果查询
+	 * @return
+	 */
+	@Test
+	public void testget_result(){
+		LOG.debug("get_result:"+service.get_result(testget_query(),testGet_timeDiff()));
+	}
+	
+	/**
+	 * 测试通讯信用评分查询
+	 */
+	@Test
+	public String testget_query(){
+		CommunicationScore communicationScore = new CommunicationScore();
+		QueryCommunicationInfo queryCommunicationInfo = new QueryCommunicationInfo();
+		queryCommunicationInfo.setName("张三");
+		queryCommunicationInfo.setTelephone("18916947787");
+		queryCommunicationInfo.setIdNumber("220681199408030039");
+		List<QueryCommunicationInfo> list = new ArrayList<QueryCommunicationInfo>();
+		list.add(queryCommunicationInfo);
+		communicationScore.setSubmitTime("2016-05-03");
+		communicationScore.setSubmitPerson("甲骨文#01");
+		communicationScore.setQueryList(list);
+		String json = JSONObject.toJSONString(communicationScore);
+		
+		//post查询通讯信用评分
+		String comScore = service.get_query(json,testGet_timeDiff());
+		AsyncQueryCommunicationVo asyncQueryCommunicationVo = new AsyncQueryCommunicationVo();
+		asyncQueryCommunicationVo.setBatchCode(comScore);
+		String jsonString = JSONObject.toJSONString(asyncQueryCommunicationVo);
+		return jsonString;
+	}
+	
+	@Test
 	public void testget_score() {
 		// 装入数据
 		CenterScore socore = new CenterScore();
 		socore.setTimeStamp(System.currentTimeMillis());
-		// 测试模型4
-		socore.setCustomerName("高文雷");
+		socore.setCustomerName("李四");
 		socore.setIdNumber("210181199310212759");
 		socore.setSex("男");
 		socore.setDegree("中专");
@@ -60,15 +104,12 @@ public class CreditServiceTest extends TestCase {
 		// AES加密
 		byte[] aes1 = AESUtil.encrypt(json, CreditServiceImpl.KEY);
 		String data = Base64.encodeBase64URLSafeString(aes1);
-		CreditService service = new CreditServiceImpl();
 		int timeDiff = testGet_timeDiff();
 		LOG.debug(service.get_score(data,timeDiff)+"");
 		
 	}
 	
 	public int testGet_timeDiff() {
-		CreditService service = new CreditServiceImpl();
-		//LOG.debug(service.get_timeDiff(CreditServiceImpl.ID)+"");
 		return service.get_timeDiff(CreditServiceImpl.ID);
 	}
 

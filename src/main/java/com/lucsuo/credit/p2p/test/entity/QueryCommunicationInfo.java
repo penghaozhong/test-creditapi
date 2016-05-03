@@ -1,5 +1,10 @@
 package com.lucsuo.credit.p2p.test.entity;
 
+/**
+ * 通讯信用评分PO
+ * @author Sorin
+ *
+ */
 public class QueryCommunicationInfo {
 
 	private String name;
