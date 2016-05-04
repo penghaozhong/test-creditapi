@@ -29,17 +29,23 @@ public class CreditServiceTest extends TestCase {
 	
 	CreditService service = new CreditServiceImpl();
 	
+	private String batchCode = "";
+	
 	/**
 	 * 通讯信用评分结果查询
 	 * @return
 	 */
 	@Test
 	public void testget_result(){
-		LOG.debug("get_result:"+service.get_result(testget_query(),testGet_timeDiff()));
+		//使用"测试通讯信用评分查询"返回的batchCode查询结果，一般为两小时后返回结果。
+		LOG.debug("get_result:"+service.get_result(batchCode,testGet_timeDiff()));
 	}
 	
 	/**
 	 * 测试通讯信用评分查询
+	 * 
+	 * 注意：每一次testget_query()接口路诚平台都会产生计费，请妥善保管batchCode
+	 * 
 	 */
 	@Test
 	public String testget_query(){
