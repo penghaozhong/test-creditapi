@@ -32,23 +32,24 @@ public class CreditServiceTest extends TestCase {
 	private String batchCode = "";
 	
 	/**
-	 * 通讯信用评分结果查询
+	 * 通讯信用评分结果接口
+	 * 目前查询进度为最少2小时返回结果, 请在调用<通讯信用评分查询接口>方法2小时后, 调用此方法.
 	 * @return
 	 */
 	@Test
 	public void testget_result(){
-		//使用"测试通讯信用评分查询"返回的batchCode查询结果，一般为两小时后返回结果。
 		LOG.debug("get_result:"+service.get_result(batchCode,testGet_timeDiff()));
 	}
 	
 	/**
-	 * 测试通讯信用评分查询
-	 * 
+	 * 通讯信用评分查询接口
 	 * 注意：每一次testget_query()接口路诚平台都会产生计费，请妥善保管batchCode
-	 * 
+	 * @return
 	 */
 	@Test
 	public String testget_query(){
+		
+		/*************** 初始化查询数据 *************************/
 		CommunicationScore communicationScore = new CommunicationScore();
 		QueryCommunicationInfo queryCommunicationInfo = new QueryCommunicationInfo();
 		queryCommunicationInfo.setName("张三");
@@ -61,7 +62,7 @@ public class CreditServiceTest extends TestCase {
 		communicationScore.setQueryList(list);
 		String json = JSONObject.toJSONString(communicationScore);
 		
-		//post查询通讯信用评分
+		/*************** post查询通讯信用评分 *********************/
 		String comScore = service.get_query(json,testGet_timeDiff());
 		AsyncQueryCommunicationVo asyncQueryCommunicationVo = new AsyncQueryCommunicationVo();
 		asyncQueryCommunicationVo.setBatchCode(comScore);
