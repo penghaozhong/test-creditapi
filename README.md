@@ -19,7 +19,7 @@
 > > 转换为mavrn项目: 项目 -> 右键 -> Configure-> Convert to Maven Project
 
 
-### 通讯信用评分查询接口, 返回示例:
+### 查询接口:
 
 ```
 
@@ -34,40 +34,18 @@
 
 ```
 
-### 通讯信用评分结果接口, 返回示例: 
+### 结果接口: 
 ```
 {"finishTime":"2016-05-03 15:56:49","resCode":200,"resMsg":"请求成功","timeDiff":686}
 
 请求成功示例:
 
 {
-    "batchCode":"0266aa2f23c04dc7b2f1043afda2b1fb",
-    "finishTime":"2016-05-04 11:17:11",
-    "resCode":200,
-    "resMsg":"请求成功",
-    "result": [        
-         {
-            "caseId":"009411694e05415d9c850ac311358192",
-            "customerIdNumber":"310228198509252611",
-            "customerMobile":"13331801313",
-            "customerName":"陆逢源",
-            "queryTime":"2016-05-04 09:47:05",
-            "score":20
-        },{
-            "caseId":"560b7d9280294a488aca55d883b5f495",
-            "customerIdNumber":"310110197201123211",
-            "customerMobile":"13331927176",
-            "customerName":"李琦峰",
-            "queryTime":"2016-05-04 09:47:12",
-            "score":30
-        },{
-            "caseId":"6e977fa292de4e3b9e859a3deb4b5508",
-            "customerIdNumber":"510781198512183553",
-            "customerMobile":"18917929911",
-            "customerName":"刘伟",
-            "queryTime":"2016-05-04 09:47:08",
-            "score":40
-        }]
+    "batchCode": "d70e8f9978174668b0fa758eea5d6db7",
+    "finishTime": "2016-05-04 20:16:28",
+    "jsonList": "K-qZBlmp5SWMDI0APeAuPdzrh3TEODWKMrxMzuhh4R6BWdNEQTM0VOcjNS1a-JtAhPS3GTBsQOKmo2Lo2X-_mLSsKMv-kZ7QkxjPPI9BbtQt0h7Fzz2QZrKNN5q8f4gFeHwHSHgVxiZfemwlGPlLYHCUhHmk5Zv3P2pe4mIaIhMW7CM59wloSm21LnwDaKPrKfL1tTpHIwbSfX-DpbTjkNvnPip2kvRG7iq2WHizZc2aHe6599hwgGt_HGM9T7gDGxKW8-IdtYgGMvEb2aGj0fK_Jz5vNDtWmeEt5NLOngXLDgAyZYABUVShD2ezngdzjdfUmNok34t_YTvLnggkU1zEWNoGKyCAAXsYGKOwdqex_XgO30FsdyOkj1s89NKYWhXtoSD-2-41Fk7uMmySBfQ4HAvr8lYultZdkV-YfBEkuRmybhnkt9E-l6Pe9NEPgEuq3tD2ecgwNADf2FTWZDUK52qidckMv2S4OXRSYBiCaA0ooVXIADvRasSKfSeE5KfPuufEUdeYA61INAqaaBzlNUONYlQ5M3uMee9PzXsJOSKBjYUoUnasSnSuO1YXgVlAMsDoF8K_kTnj7AsmNGk19mUExoODh0_cix2PTyKMyMoxSGLfXbDtikTu647CA7mD9opG2NqSvAzqUiF6I8AYnUgQSexqLP4jNQQRybbGdiFawVIu_0MZxdC0XVLRf3jo6u6DZkDBknw0Db9S9LODZ-qF58fifTG6uC24yQDEmKkJbDIk2XRDoKv8AtOV",
+    "resCode": 200,
+    "resMsg": "请求成功"
 }
 
 
@@ -76,8 +54,44 @@
 {
     "batchCode":"0266aa2f23c04dc7b2f1043afda2b1fb",
     "finishTime":"2016-05-04 10:49:03",
+    "resCode":47000,
+    "resMsg":"时间间隔超过一分钟, 请重新鉴定时间间隔"
+}
+
+{
+    "batchCode":"0266aa2f23c04dc7b2f1043afda2b1fb",
+    "finishTime":"2016-05-04 10:49:03",
+    "resCode":47001,
+    "resMsg":"网络传输过程中签名不匹配, 数据丢失"
+}
+
+
+{
+    "batchCode":"0266aa2f23c04dc7b2f1043afda2b1fb",
+    "finishTime":"2016-05-04 10:49:03",
     "resCode":47002,
     "resMsg":"暂时无数据返回,请稍后查询"
+}
+
+{
+    "batchCode":"0266aa2f23c04dc7b2f1043afda2b1fb",
+    "finishTime":"2016-05-04 10:49:03",
+    "resCode":40004,
+    "resMsg":"不合法的参数"
+}
+
+{
+    "batchCode":"0266aa2f23c04dc7b2f1043afda2b1fb",
+    "finishTime":"2016-05-04 10:49:03",
+    "resCode":40008,
+    "resMsg":"公司密钥不正确!"
+}
+
+{
+    "batchCode":"0266aa2f23c04dc7b2f1043afda2b1fb",
+    "finishTime":"2016-05-04 10:49:03",
+    "resCode":47011,
+    "resMsg":"查询批次号batchCode不允许为空"
 }
 
 ```
