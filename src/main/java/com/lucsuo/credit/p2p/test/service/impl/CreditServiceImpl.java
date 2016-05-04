@@ -75,7 +75,7 @@ public class CreditServiceImpl implements CreditService {
 			HttpEntity entity = response.getEntity();
 			resultJson = EntityUtils.toString(entity, "UTF-8");
 			if (HttpStatus.SC_OK == resultCode) {
-				System.out.println(resultJson);
+				LOG.debug(resultJson);
 			}
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
@@ -119,7 +119,7 @@ public class CreditServiceImpl implements CreditService {
 			HttpEntity entity = response.getEntity();
 			String resultJson = EntityUtils.toString(entity, "UTF-8");
 			if (HttpStatus.SC_OK == resultCode) {
-				System.out.println(resultJson);
+				LOG.debug(resultJson);
 				JSONObject parseObject = JSON.parseObject(resultJson);
 				batchCode = (String) parseObject.get("batchCode");
 			}

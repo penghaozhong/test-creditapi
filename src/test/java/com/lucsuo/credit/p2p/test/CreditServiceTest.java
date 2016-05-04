@@ -23,7 +23,7 @@ import com.lucsuo.credit.p2p.test.util.AESUtil;
  * @author Sorin
  *
  */
-public class CreditServiceTest extends TestCase {	
+public class CreditServiceTest  {	
 	
 	private static final Logger LOG = LoggerFactory.getLogger(CreditServiceTest.class);
 	
@@ -38,7 +38,10 @@ public class CreditServiceTest extends TestCase {
 	 */
 	@Test
 	public void testget_result(){
-		LOG.debug("get_result:"+service.get_result(batchCode,testGet_timeDiff()));
+		AsyncQueryCommunicationVo asyncQueryCommunicationVo = new AsyncQueryCommunicationVo();
+		asyncQueryCommunicationVo.setBatchCode(batchCode);
+		String jsonString = JSONObject.toJSONString(asyncQueryCommunicationVo);
+		service.get_result(jsonString,testGet_timeDiff());
 	}
 	
 	/**
@@ -47,7 +50,7 @@ public class CreditServiceTest extends TestCase {
 	 * @return
 	 */
 	@Test
-	public String testget_query(){
+	public void testget_query(){
 		
 		/*************** 初始化查询数据 *************************/
 		CommunicationScore communicationScore = new CommunicationScore();
@@ -64,10 +67,7 @@ public class CreditServiceTest extends TestCase {
 		
 		/*************** post查询通讯信用评分 *********************/
 		String comScore = service.get_query(json,testGet_timeDiff());
-		AsyncQueryCommunicationVo asyncQueryCommunicationVo = new AsyncQueryCommunicationVo();
-		asyncQueryCommunicationVo.setBatchCode(comScore);
-		String jsonString = JSONObject.toJSONString(asyncQueryCommunicationVo);
-		return jsonString;
+		
 	}
 	
 	@Test
