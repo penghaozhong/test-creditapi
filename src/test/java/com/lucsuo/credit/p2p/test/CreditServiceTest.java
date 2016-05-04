@@ -3,18 +3,19 @@ package com.lucsuo.credit.p2p.test;
 import java.util.ArrayList;
 import java.util.List;
 
-import junit.framework.TestCase;
-
 import org.apache.commons.codec.binary.Base64;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.lucsuo.credit.p2p.test.entity.AsyncQueryCommunicationVo;
 import com.lucsuo.credit.p2p.test.entity.CenterScore;
 import com.lucsuo.credit.p2p.test.entity.CommunicationScore;
 import com.lucsuo.credit.p2p.test.entity.QueryCommunicationInfo;
+import com.lucsuo.credit.p2p.test.res.CommunicationResult;
+import com.lucsuo.credit.p2p.test.res.CommunicationResultResponse;
 import com.lucsuo.credit.p2p.test.service.CreditService;
 import com.lucsuo.credit.p2p.test.service.impl.CreditServiceImpl;
 import com.lucsuo.credit.p2p.test.util.AESUtil;
@@ -37,11 +38,25 @@ public class CreditServiceTest  {
 	 * @return
 	 */
 	@Test
-	public void testget_result(){
+	public void testget_result() {
 		AsyncQueryCommunicationVo asyncQueryCommunicationVo = new AsyncQueryCommunicationVo();
 		asyncQueryCommunicationVo.setBatchCode(batchCode);
 		String jsonString = JSONObject.toJSONString(asyncQueryCommunicationVo);
-		service.get_result(jsonString,testGet_timeDiff());
+		String result = service.get_result(jsonString, testGet_timeDiff());
+
+		CommunicationResultResponse resultResponse = JSON.parseObject(result, CommunicationResultResponse.class);
+
+		String decryptStr = resultResponse.getJsonList(); // 返回的加密字符串
+
+		if (decryptStr == null || decryptStr.length() <= 0)
+			return;
+
+		// 解密字符串, 并且转换为javaBean
+		List<CommunicationResult> resultList = JSON.parseArray(new String(AESUtil.decrypt(decryptStr, CreditServiceImpl.KEY)), CommunicationResult.class);
+
+		for (CommunicationResult communicationResult : resultList) {
+			System.out.println(communicationResult);
+		}
 	}
 	
 	/**
@@ -66,7 +81,7 @@ public class CreditServiceTest  {
 		String json = JSONObject.toJSONString(communicationScore);
 		
 		/*************** post查询通讯信用评分 *********************/
-		String comScore = service.get_query(json,testGet_timeDiff());
+		service.get_query(json,testGet_timeDiff());
 		
 	}
 	
