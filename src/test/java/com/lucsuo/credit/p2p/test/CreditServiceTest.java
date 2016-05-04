@@ -55,7 +55,7 @@ public class CreditServiceTest  {
 		List<CommunicationResult> resultList = JSON.parseArray(new String(AESUtil.decrypt(decryptStr, CreditServiceImpl.KEY)), CommunicationResult.class);
 
 		for (CommunicationResult communicationResult : resultList) {
-			System.out.println(communicationResult);
+			LOG.debug(JSON.toJSONString(communicationResult));
 		}
 	}
 	

@@ -93,11 +93,4 @@ public class CommunicationResult {
 		this.probability = probability;
 	}
 
-	@Override
-	public String toString() {
-		return "CommunicationResult [caseId=" + caseId + ", score=" + score + ", queryTime=" + queryTime
-				+ ", customerName=" + customerName + ", customerMobile=" + customerMobile + ", customerIdNumber="
-				+ customerIdNumber + ", probability=" + probability + "]";
-	}
-
 }
