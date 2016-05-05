@@ -17,14 +17,14 @@ public class TxServiceImpl extends AbsComServiceImpl implements TXService {
 	public String get_Query(String url, List<NameValuePair> nvps) {
 		HttpClientFactory clientFactory = HttpClientFactory.createInstance();
 		String response = clientFactory.post(url, nvps);
-		LOG.debug(response); // 打印返回结果
+		LOG.debug("通讯信用评分查询接口:" + response); // 打印返回结果
 		return response;
 	}
 
 	public String get_Result(String url, List<NameValuePair> nvps) {
 		HttpClientFactory clientFactory = HttpClientFactory.createInstance();
 		String response = clientFactory.post(url, nvps);
-		LOG.debug(response); // 打印返回结果
+		LOG.debug("通讯信用评分结果接口:" + response); // 打印返回结果
 		return response;
 	}
 

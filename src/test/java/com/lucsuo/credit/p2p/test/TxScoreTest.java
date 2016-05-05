@@ -17,7 +17,6 @@ import com.lucsuo.credit.p2p.test.entity.QueryCommunicationInfo;
 import com.lucsuo.credit.p2p.test.res.CommunicationResult;
 import com.lucsuo.credit.p2p.test.res.CommunicationResultResponse;
 import com.lucsuo.credit.p2p.test.service.TXService;
-import com.lucsuo.credit.p2p.test.service.impl.CreditServiceImpl;
 import com.lucsuo.credit.p2p.test.service.impl.TxServiceImpl;
 import com.lucsuo.credit.p2p.test.util.AESUtil;
 
@@ -42,9 +41,6 @@ public class TxScoreTest {
 	public static final String URL_GET_RESULT = "http://api.lcsuo.com/company/CommunicationService/get_result";
 	
 	private TXService txService;
-	
-	// 修改为get_Query()方法所返回的唯一批次码
-	private String batchCode = "";
 	
 	// 时间间隔
 	private int timeDiff;
@@ -89,6 +85,9 @@ public class TxScoreTest {
 	@Test
 	public void test_Result() throws Exception {
 		
+		/******* 修改为get_Query()方法所返回的批次唯一批次码 *******/
+		String batchCode = null;
+		
 		/************************ 初始化查询数据 *************************/
 		AsyncQueryCommunicationVo asyncQueryCommunicationVo = new AsyncQueryCommunicationVo();
 		asyncQueryCommunicationVo.setBatchCode(batchCode);
@@ -102,9 +101,9 @@ public class TxScoreTest {
 		if (decryptStr == null || decryptStr.length() <= 0)	return;
 		
 		// 解密字符串, 并且转换为javaBean
-		List<CommunicationResult> resultList = JSON.parseArray(new String(AESUtil.decrypt(decryptStr, CreditServiceImpl.KEY)), CommunicationResult.class);
+		List<CommunicationResult> resultList = JSON.parseArray(new String(AESUtil.decrypt(decryptStr, KEY)), CommunicationResult.class);
 		for (CommunicationResult communicationResult : resultList) {
-			LOG.debug(JSON.toJSONString(communicationResult));
+			LOG.debug("结果信息:" + JSON.toJSONString(communicationResult));
 		}
 	}
 
