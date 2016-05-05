@@ -34,11 +34,11 @@ public class TxScoreTest {
 	// 日志打印
 	private final Logger LOG = LoggerFactory.getLogger(getClass());
 	// 调用时间同步接口请求URL
-	public static final String URL_TIME_DIFF = "http://api.lcsuo.com/company/get_timeDiff";
+	public static final String URL_TIME_DIFF = "http://servicetest.lcsuo.com:8100/company/get_timeDiff";
 	// 通讯信用评分对接请求地址URL
-	public static final String URL_GET_QUERY = "http://api.lcsuo.com/company/CommunicationService/get_query";
+	public static final String URL_GET_QUERY = "http://servicetest.lcsuo.com:8100/company/CommunicationService/get_query";
 	// 通信评分结果查询接口URL
-	public static final String URL_GET_RESULT = "http://api.lcsuo.com/company/CommunicationService/get_result";
+	public static final String URL_GET_RESULT = "http://servicetest.lcsuo.com:8100/company/CommunicationService/get_result";
 	
 	private TXService txService;
 	
