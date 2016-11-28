@@ -59,7 +59,7 @@ public class HttpClientFactory {
 		HttpPost request = new HttpPost(url);
 		CloseableHttpResponse response = null;
 		try {
-			request.setEntity(new UrlEncodedFormEntity(nvps)); // 封装post请求参数
+			request.setEntity(new UrlEncodedFormEntity(nvps,"UTF-8")); // 封装post请求参数
 			response = client.execute(request); // 发送请求
 			int resultCode = response.getStatusLine().getStatusCode(); // 返回响应状态
 
