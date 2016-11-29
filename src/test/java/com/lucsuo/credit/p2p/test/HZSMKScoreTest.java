@@ -48,16 +48,12 @@ public class HZSMKScoreTest {
 		/*************** 初始化查询数据 *************************/
 		
 		HZSMKVo hzsmk = new HZSMKVo();
-		hzsmk.setCustomerIdNumber("432822197512052142");
-		hzsmk.setCustomerName("李良花");
+		hzsmk.setCustomerIdNumber("");
+		hzsmk.setCustomerName("");
 		List<HZSMKVo> list = new ArrayList<HZSMKVo>();
 		list.add(hzsmk);
-		
-		String data = JSONObject.toJSONString(list);
-		List<NameValuePair> dataParams = dataParams( ID,KEY, data);
-		
-		/************************ 调用 通讯信用评分结果接口 *************************/
-	 	String resultJson = txService.get_Query(URL_GET_QUERY, dataParams);
+		/************************ 调用 杭州市民卡评分结果接口 *************************/
+	 	String resultJson = txService.get_Query(URL_GET_QUERY, dataParams( ID,KEY, JSONObject.toJSONString(list)));
 	 	if(resultJson !=null){
 			LOG.debug("结果信息:" + resultJson);
 	 	}
