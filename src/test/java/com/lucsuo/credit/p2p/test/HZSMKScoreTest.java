@@ -19,7 +19,7 @@ import com.lucsuo.credit.p2p.test.service.impl.TxServiceImpl;
 import com.lucsuo.credit.p2p.test.util.AESUtil;
 
 /**
- * 通讯评分测试用例
+ * 杭州市民卡评分测试用例
  * @author wangpeng
  * @version 1.0
  */
@@ -32,7 +32,7 @@ public class HZSMKScoreTest {
 	// 日志打印
 	private final Logger LOG = LoggerFactory.getLogger(getClass());
 	// 通讯信用评分对接请求地址URL
-	public static final String URL_GET_QUERY = "http://service.lcsuo.com:8080/company/api/hzsmk";
+	public static final String URL_GET_QUERY = "http://www.lcsuo.com/company/api/hzsmk";
 	
 	private TXService txService = new TxServiceImpl();
 	
