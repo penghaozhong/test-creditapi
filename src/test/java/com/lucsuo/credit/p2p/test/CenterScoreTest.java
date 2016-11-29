@@ -23,9 +23,9 @@ public class CenterScoreTest {
 	// 修改为自己公司的PrivateKey
 	public static final String KEY = "";
 	// 调用时间同步接口请求URL
-	public static final String URL_TIME_DIFF = "http://servicetest.lcsuo.com:8100/company/get_timeDiff";
+	public static final String URL_TIME_DIFF = "";
 	// 央信评分接口对接请求地址URL
-	public static final String CENTER_SCORE_URL = "http://servicetest.lcsuo.com:8100/company/get_score";
+	public static final String CENTER_SCORE_URL = "";
 	
 	private CTScoreService ctService;
 	

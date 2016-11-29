@@ -1,10 +1,8 @@
-# test-creditapi
-用户测试webapi Demo    
+# test-creditapi    
 ##使用注意事项
 
 	1.key 修改为自己公司的key
 	2.公司ID，密钥在注册后会发送到注册联系邮箱中
-	3.有问题请咨询相关工作人员 联系QQ 398752075
 ##错误信息参考
 **异常java.security.InvalidKeyException:illegal Key Size的解决方案,官方网站提供了JCE无限制权限策略文件的下载:**
 * JDK6的下载地址：   http://www.oracle.com/technetwork/java/javase/downloads/jce-6-download-429243.html
@@ -13,85 +11,3 @@
 * 如果安装了JRE，将两个jar文件放到%JRE_HOME%\lib\security下覆盖原来文件，记得先备份。
 * 如果安装了JDK，将两个jar文件也放到%JDK_HOME%\jre\lib\security下。
 
-##git项目下载流程:
-
-> eclipse git 使用:  http://my.oschina.net/u/933822/blog/369640?fromerr=z2asb8xh
-> > 转换为mavrn项目: 项目 -> 右键 -> Configure-> Convert to Maven Project
-
-
-### 查询接口:
-
-```
-
-{"finishTime":"2016-05-04 15:05:08","resCode":200,"resMsg":"请求成功","timeDiff":188}
-
-{
-    "batchCode":"61b2a47edc6d4f7bb6ebd1524b23bf7b",
-    "finishTime":"2016-05-04 14:56:40",
-    "resCode":200,
-    "resMsg":"请求成功"
-}
-
-```
-
-### 结果接口: 
-```
-{"finishTime":"2016-05-03 15:56:49","resCode":200,"resMsg":"请求成功","timeDiff":686}
-
-请求成功示例:
-
-{
-    "batchCode": "d70e8f9978174668b0fa758eea5d6db7",
-    "finishTime": "2016-05-04 20:16:28",
-    "jsonList": "",
-    "resCode": 200,
-    "resMsg": "请求成功"
-}
-
-
-请求失败示例:
-
-{
-    "batchCode":"0266aa2f23c04dc7b2f1043afda2b1fb",
-    "finishTime":"2016-05-04 10:49:03",
-    "resCode":47000,
-    "resMsg":"时间间隔超过一分钟, 请重新鉴定时间间隔"
-}
-
-{
-    "batchCode":"0266aa2f23c04dc7b2f1043afda2b1fb",
-    "finishTime":"2016-05-04 10:49:03",
-    "resCode":47001,
-    "resMsg":"网络传输过程中签名不匹配, 数据丢失"
-}
-
-
-{
-    "batchCode":"0266aa2f23c04dc7b2f1043afda2b1fb",
-    "finishTime":"2016-05-04 10:49:03",
-    "resCode":47002,
-    "resMsg":"暂时无数据返回,请稍后查询"
-}
-
-{
-    "batchCode":"0266aa2f23c04dc7b2f1043afda2b1fb",
-    "finishTime":"2016-05-04 10:49:03",
-    "resCode":40004,
-    "resMsg":"不合法的参数"
-}
-
-{
-    "batchCode":"0266aa2f23c04dc7b2f1043afda2b1fb",
-    "finishTime":"2016-05-04 10:49:03",
-    "resCode":40008,
-    "resMsg":"公司密钥不正确!"
-}
-
-{
-    "batchCode":"0266aa2f23c04dc7b2f1043afda2b1fb",
-    "finishTime":"2016-05-04 10:49:03",
-    "resCode":47011,
-    "resMsg":"查询批次号batchCode不允许为空"
-}
-
-```
