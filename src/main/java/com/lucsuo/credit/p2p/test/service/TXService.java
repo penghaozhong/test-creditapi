@@ -17,14 +17,8 @@ public interface TXService extends ComService {
 	 * @param nvps 参数
 	 * @return
 	 */
-	public String get_Query(String url, List<NameValuePair> nvps);
+	public String getScore(String url, List<NameValuePair> nvps);
 
-	/**
-	 * 通讯信用评分, 返回结果接口
-	 * @param url 请求地址
-	 * @param nvps 参数
-	 * @return
-	 */
-	public String get_Result(String url, List<NameValuePair> nvps);
+	
 
 }

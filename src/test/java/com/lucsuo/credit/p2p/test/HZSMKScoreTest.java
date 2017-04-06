@@ -53,7 +53,7 @@ public class HZSMKScoreTest {
 		List<HZSMKVo> list = new ArrayList<HZSMKVo>();
 		list.add(hzsmk);
 		/************************ 调用 杭州市民卡评分结果接口 *************************/
-	 	String resultJson = txService.get_Query(URL_GET_QUERY, dataParams( ID,KEY, JSONObject.toJSONString(list)));
+	 	String resultJson =null;
 	 	if(resultJson !=null){
 			LOG.debug("结果信息:" + resultJson);
 	 	}
